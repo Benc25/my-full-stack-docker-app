@@ -61,13 +61,20 @@ jobs:
     outputs:
       sha_short: ${{ steps.vars.outputs.sha_short }}
     steps:
+      - name: Checkout code  # Add this step
+        uses: actions/checkout@v4
       - name: Pull and redeploy
         env:
           SHA: ${{ needs.build-and-push.outputs.sha_short }}
           DOCKER_USER: ${{ secrets.DOCKERHUB_USERNAME }}
         run: |
           mkdir -p ~/app/deploy
+<<<<<<< HEAD
           curl -o ~/app/deploy/docker-compose.yml curl -o ~/app/deploy/docker-compose.yml https://raw.githubusercontent.com/innoetech-dev/my-full-stack-docker-app/refs/heads/feature/load-balancer/ci_docker-compose.yml
+=======
+          curl -o ~/app/deploy/docker-compose.yml https://raw.githubusercontent.com/innoetech-dev/my-full-stack-docker-app/refs/heads/feature/pipeline/docker-compose.yml
+          cd ~/app/deploy
+>>>>>>> e76efe17825abf77ad3499fb6daba3f42454afb2
           sed -i "s|YOUR_DOCKERHUB_USERNAME|$DOCKER_USER|g" docker-compose.yml
           sed -i "s|YOUR_SHA|$SHA|g" docker-compose.yml
           docker compose pull
