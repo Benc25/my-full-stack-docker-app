@@ -71,6 +71,7 @@ jobs:
           mkdir -p ~/app/deploy
           curl -o ~/app/deploy/docker-compose.yml https://raw.githubusercontent.com/innoetech-dev/my-full-stack-docker-app/refs/heads/feature/pipeline/docker-compose.yml
           cd ~/app/deploy
+>>>>>>> e76efe17825abf77ad3499fb6daba3f42454afb2
           sed -i "s|YOUR_DOCKERHUB_USERNAME|$DOCKER_USER|g" docker-compose.yml
           sed -i "s|YOUR_SHA|$SHA|g" docker-compose.yml
           docker compose pull
