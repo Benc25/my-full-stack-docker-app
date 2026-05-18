@@ -61,6 +61,8 @@ jobs:
     outputs:
       sha_short: ${{ steps.vars.outputs.sha_short }}
     steps:
+      - name: Checkout code  # Add this step
+        uses: actions/checkout@v4
       - name: Pull and redeploy
         env:
           SHA: ${{ needs.build-and-push.outputs.sha_short }}
